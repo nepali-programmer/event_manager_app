@@ -1,8 +1,8 @@
-import 'event_list_empty.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../data/constant/app_constant.dart';
 import '../../../domain/entity/event.dart';
+import 'event_list_empty.dart';
 
 class EventListLoaded extends StatelessWidget {
   final List<Event> events;

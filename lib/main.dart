@@ -1,3 +1,4 @@
+import 'package:event_manager_app/features/event/presentation/cubit/event/event_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,8 +21,10 @@ class MyApp extends StatelessWidget {
       title: 'Weather App',
       debugShowCheckedModeBanner: false,
       theme: getIt<AppThemeData>().lightTheme(),
-      home: BlocProvider(
-        create: (context) => getIt<LoginCubit>(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => getIt<LoginCubit>()),
+        ],
         child: const LoginView(),
       ),
     );

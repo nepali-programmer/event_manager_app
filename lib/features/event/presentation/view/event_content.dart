@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/extension/date_extension.dart';
 import '../../../../core/widget/button/main_button.dart';
-import 'event_list_view/event_list_view.dart';
-import 'package:flutter/material.dart';
-
 import '../../../../data/constant/app_constant.dart';
+import '../cubit/event/event_cubit.dart';
+import 'event_list_view/event_list_view.dart';
 
 class EventContent extends StatefulWidget {
   const EventContent({super.key});
@@ -57,7 +59,14 @@ class _EventContentState extends State<EventContent> {
     if (formKey.currentState != null && formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const EventListView(),
+          builder: (_) => BlocProvider.value(
+            value: context.read<EventCubit>(),
+            child: EventListView(
+              city: city.text.trim(),
+              startDate: startDate,
+              endDate: endDate,
+            ),
+          ),
         ),
       );
     }

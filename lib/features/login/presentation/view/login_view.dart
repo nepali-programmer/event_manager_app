@@ -3,7 +3,8 @@ import 'package:event_manager_app/features/event/presentation/view/event_view.da
 import 'package:event_manager_app/features/login/presentation/view/login_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../core/di/injection.dart';
+import '../../../event/presentation/cubit/event/event_cubit.dart';
 import '../cubit/login/login_cubit.dart';
 
 class LoginView extends StatefulWidget {
@@ -31,7 +32,10 @@ class _LoginViewState extends State<LoginView> {
             loading: false,
             message: message,
           ),
-          success: (user) => EventView(user: user),
+          success: (user) => BlocProvider(
+            create: (context) => getIt<EventCubit>(),
+            child: EventView(user: user),
+          ),
         );
       },
     );

@@ -1,4 +1,4 @@
-import 'package:event_manager_app/features/event/domain/entity/event.dart';
+import '../../domain/entity/event.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'event_model.freezed.dart';

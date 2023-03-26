@@ -6,9 +6,9 @@ import 'package:event_manager_app/features/event/domain/repository/event_reposit
 import 'package:injectable/injectable.dart';
 
 @LazySingleton()
-class LoginUsecase {
+class EventListUsecase {
   final EventRepository eventRepository;
-  LoginUsecase({
+  EventListUsecase({
     required this.eventRepository,
   });
   Future<Either<AppError, List<Event>>> call({
