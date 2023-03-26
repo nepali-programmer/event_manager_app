@@ -19,7 +19,10 @@ class EventRepositoryImpl implements EventRepository {
     required String city,
     String? startDate,
     String? endDate,
-  }) async {
-    return left(AppError());
-  }
+  }) =>
+      eventRemoteDataSource.eventList(
+        city: city,
+        startDate: startDate,
+        endDate: endDate,
+      );
 }

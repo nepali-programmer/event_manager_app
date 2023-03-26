@@ -12,6 +12,7 @@ import '../model/user_model.dart';
 abstract class LoginLocalDataSource {
   Future<Either<AppError, UserModel>> getUserDetail();
   Future<Either<AppError, String>> logout();
+  UserModel getUserDetailRaw();
 }
 
 @LazySingleton(as: LoginLocalDataSource)
@@ -38,5 +39,11 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
     } catch (e) {
       return left(AppError());
     }
+  }
+
+  @override
+  UserModel getUserDetailRaw() {
+    String? userModelString = preferences.getString(kUserModelKey);
+    return UserModel.fromJson(jsonDecode(userModelString!));
   }
 }

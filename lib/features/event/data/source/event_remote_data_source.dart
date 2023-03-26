@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:event_manager_app/features/login/data/source/login_local_data_source.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:event_manager_app/core/api/api_url.dart';
@@ -18,8 +19,10 @@ abstract class EventRemoteDataSource {
 
 @LazySingleton(as: EventRemoteDataSource)
 class EventRemoteDataSourceImpl implements EventRemoteDataSource {
+  final LoginLocalDataSource localDataSource;
   final ApiUrl apiUrl;
   EventRemoteDataSourceImpl({
+    required this.localDataSource,
     required this.apiUrl,
   });
   @override
@@ -38,18 +41,18 @@ class EventRemoteDataSourceImpl implements EventRemoteDataSource {
     if (endDate != null) {
       queryParameters['end_date'] = endDate;
     }
-    print(queryParameters);
-    Response response = await dio.post(
-      apiUrl.login,
+    Response response = await dio.get(
+      apiUrl.event,
       queryParameters: queryParameters,
       options: Options(
         headers: {
+          'Authorization': 'Bearer ${localDataSource.getUserDetailRaw().token}',
           'Accept': 'application/json',
         },
       ),
     );
     if (response.statusCode == 200) {
-      List<EventModel> events = response.data.map((e) {
+      List<EventModel> events = response.data.map<EventModel>((e) {
         return EventModel.fromJson(e);
       }).toList();
       return Right(events);
