@@ -40,6 +40,7 @@ class _EventContentState extends State<EventContent> {
   }
 
   chooseDate(String type) async {
+    formKey.currentState!.reset();
     DateTime? value = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -70,6 +71,21 @@ class _EventContentState extends State<EventContent> {
         ),
       );
     }
+  }
+
+  searchAll() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => BlocProvider.value(
+          value: context.read<EventCubit>(),
+          child: const EventListView(
+            city: '',
+            startDate: null,
+            endDate: null,
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -138,6 +154,44 @@ class _EventContentState extends State<EventContent> {
                       ),
                     ],
                   ),
+                  startDate == null && endDate == null
+                      ? const SizedBox.shrink()
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: kSmallSpacing),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: startDate == null
+                                    ? const SizedBox.shrink()
+                                    : Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: TextButton.icon(
+                                          icon: const Icon(Icons.close),
+                                          label: const Text('Clear'),
+                                          onPressed: () => setState(() {
+                                            startDate = null;
+                                          }),
+                                        ),
+                                      ),
+                              ),
+                              Expanded(
+                                child: endDate == null
+                                    ? const SizedBox.shrink()
+                                    : Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: TextButton.icon(
+                                          icon: const Icon(Icons.close),
+                                          label: const Text('Clear'),
+                                          onPressed: () => setState(() {
+                                            endDate = null;
+                                          }),
+                                        ),
+                                      ),
+                              ),
+                            ],
+                          ),
+                        ),
                   const SizedBox(height: kDefaultSpacing),
                   Padding(
                     padding:
@@ -146,6 +200,15 @@ class _EventContentState extends State<EventContent> {
                       title: 'Search Event',
                       onPressed: () {
                         search();
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: kDefaultSpacing),
+                  Align(
+                    child: TextButton(
+                      child: const Text('All events'),
+                      onPressed: () {
+                        searchAll();
                       },
                     ),
                   ),

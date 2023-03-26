@@ -1,3 +1,4 @@
+import 'package:event_manager_app/core/widget/button/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,81 +61,86 @@ class _LoginContentState extends State<LoginContent> {
         const SizedBox(height: kDefaultSpacing),
         Text(
           'Login',
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
         ),
         const Text('Log in to use Event Manager'),
         const SizedBox(height: kDefaultSpacing),
-        Form(
-          key: formKey,
-          child: Material(
-            elevation: 2.0,
-            borderRadius: BorderRadius.circular(kSmallBorderRadius),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: kLargeSpacing,
-                horizontal: kDefaultSpacing,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  TextFormField(
-                    controller: email,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      alignLabelWithHint: true,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kSmallSpacing),
+          child: Form(
+            key: formKey,
+            child: Material(
+              elevation: 2.0,
+              borderRadius: BorderRadius.circular(kSmallBorderRadius),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: kLargeSpacing,
+                  horizontal: kDefaultSpacing,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextFormField(
+                      controller: email,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        alignLabelWithHint: true,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email is required';
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Email is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: kDefaultSpacing),
-                  TextFormField(
-                    controller: password,
-                    obscureText: true,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    textInputAction: TextInputAction.done,
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
-                      alignLabelWithHint: true,
+                    const SizedBox(height: kDefaultSpacing),
+                    TextFormField(
+                      controller: password,
+                      obscureText: true,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.done,
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        alignLabelWithHint: true,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password is required';
+                        }
+                        return null;
+                      },
+                      onEditingComplete: () {
+                        login();
+                      },
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password is required';
-                      }
-                      return null;
-                    },
-                    onEditingComplete: () {
-                      login();
-                    },
-                  ),
-                  const SizedBox(height: kDefaultSpacing),
-                  widget.message.isNotEmpty
-                      ? Container(
-                          color: Theme.of(context).colorScheme.errorContainer,
-                          padding: const EdgeInsets.all(kDefaultSpacing),
-                          margin:
-                              const EdgeInsets.only(bottom: kDefaultSpacing),
-                          child: Text(
-                            widget.message,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onErrorContainer),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  ElevatedButton(
-                    child: const Text('Login'),
-                    onPressed: () {
-                      login();
-                    },
-                  ),
-                ],
+                    const SizedBox(height: kDefaultSpacing),
+                    widget.message.isNotEmpty
+                        ? Container(
+                            color: Theme.of(context).colorScheme.errorContainer,
+                            padding: const EdgeInsets.all(kDefaultSpacing),
+                            margin:
+                                const EdgeInsets.only(bottom: kDefaultSpacing),
+                            child: Text(
+                              widget.message,
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onErrorContainer),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                    MainButton(
+                      title: 'Login',
+                      onPressed: () {
+                        login();
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
