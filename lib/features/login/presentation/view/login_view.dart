@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:event_manager_app/features/login/presentation/view/login_content.dart';
+import 'package:event_manager_app/features/login/presentation/view/login_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,9 +20,12 @@ class LoginView extends StatelessWidget {
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
           return state.when(
-            initial: () => const LoginContent(loading: false),
-            loading: () => const LoginContent(loading: true),
-            failure: () => const LoginContent(loading: false),
+            initial: () => const LoginScaffold(loading: false),
+            loading: () => const LoginScaffold(loading: true),
+            failure: (message) => LoginScaffold(
+              loading: false,
+              message: message,
+            ),
             success: (user) => main,
           );
         },

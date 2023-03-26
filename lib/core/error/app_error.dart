@@ -1,3 +1,11 @@
-class AppError implements Exception {}
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+class AppError implements Exception {
+  final String message;
+  AppError({
+    this.message = '',
+  });
+}
 
-class AuthenticationError extends AppError {}
+class AuthenticationError extends AppError {
+  AuthenticationError({required super.message});
+}

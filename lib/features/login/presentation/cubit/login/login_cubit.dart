@@ -28,7 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
       password: password,
     );
     result.fold(
-      (l) => emit(const LoginState.failure()),
+      (l) => emit(LoginState.failure(l.message)),
       (r) => emit(LoginState.success(r)),
     );
   }

@@ -21,7 +21,7 @@ mixin _$LoginState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) success,
-    required TResult Function() failure,
+    required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$LoginState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? success,
-    TResult? Function()? failure,
+    TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$LoginState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? success,
-    TResult Function()? failure,
+    TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) success,
-    required TResult Function() failure,
+    required TResult Function(String message) failure,
   }) {
     return initial();
   }
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? success,
-    TResult? Function()? failure,
+    TResult? Function(String message)? failure,
   }) {
     return initial?.call();
   }
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? success,
-    TResult Function()? failure,
+    TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -239,7 +239,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) success,
-    required TResult Function() failure,
+    required TResult Function(String message) failure,
   }) {
     return loading();
   }
@@ -250,7 +250,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? success,
-    TResult? Function()? failure,
+    TResult? Function(String message)? failure,
   }) {
     return loading?.call();
   }
@@ -261,7 +261,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? success,
-    TResult Function()? failure,
+    TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -378,7 +378,7 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) success,
-    required TResult Function() failure,
+    required TResult Function(String message) failure,
   }) {
     return success(user);
   }
@@ -389,7 +389,7 @@ class _$_Success implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? success,
-    TResult? Function()? failure,
+    TResult? Function(String message)? failure,
   }) {
     return success?.call(user);
   }
@@ -400,7 +400,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? success,
-    TResult Function()? failure,
+    TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -461,6 +461,8 @@ abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -469,26 +471,50 @@ class __$$_FailureCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_Failure(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Failure implements _Failure {
-  const _$_Failure();
+  const _$_Failure(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'LoginState.failure()';
+    return 'LoginState.failure(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Failure);
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -496,9 +522,9 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) success,
-    required TResult Function() failure,
+    required TResult Function(String message) failure,
   }) {
-    return failure();
+    return failure(message);
   }
 
   @override
@@ -507,9 +533,9 @@ class _$_Failure implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? success,
-    TResult? Function()? failure,
+    TResult? Function(String message)? failure,
   }) {
-    return failure?.call();
+    return failure?.call(message);
   }
 
   @override
@@ -518,11 +544,11 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? success,
-    TResult Function()? failure,
+    TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure();
+      return failure(message);
     }
     return orElse();
   }
@@ -566,5 +592,10 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements LoginState {
-  const factory _Failure() = _$_Failure;
+  const factory _Failure(final String message) = _$_Failure;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

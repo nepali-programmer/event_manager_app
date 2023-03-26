@@ -7,7 +7,7 @@ import 'injection.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit()
-void configureInjection() => getIt.init();
+Future<void> configureInjection() => getIt.init();
 
 @module
 abstract class RegisterModule {

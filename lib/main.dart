@@ -7,7 +7,7 @@ import 'features/login/presentation/view/login_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureInjection();
+  await configureInjection();
   runApp(const MyApp());
 }
 
