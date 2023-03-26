@@ -15,7 +15,7 @@ class LoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 248, 248, 248),
+      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       body: Stack(
         children: [
           LoginContent(message: message),

@@ -1,3 +1,4 @@
+import 'package:event_manager_app/features/event/presentation/widget/event_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../data/constant/app_constant.dart';
@@ -13,8 +14,12 @@ class EventListLoaded extends StatelessWidget {
     if (events.isEmpty) {
       return const EventListEmpty();
     }
-    return ListView(
+    return ListView.builder(
       padding: const EdgeInsets.all(kDefaultSpacing),
+      itemCount: events.length,
+      itemBuilder: (context, index) {
+        return EventContainer(event: events[index]);
+      },
     );
   }
 }

@@ -6,4 +6,5 @@ class ApiUrl {
   String get login => '$_baseUrl/api/token';
   String get ticketType => '$_baseUrl/ticket-type';
   String get event => '$_baseUrl/api/event';
+  String get imageUrl => '$_baseUrl/images';
 }

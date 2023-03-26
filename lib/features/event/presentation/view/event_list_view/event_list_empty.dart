@@ -11,13 +11,17 @@ class EventListEmpty extends StatelessWidget {
       padding: const EdgeInsets.all(kDefaultSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: kExtraLargeSpacing),
-          Icon(
-            Icons.search_off,
-            size: kLargeIcon,
+        children: [
+          const SizedBox(height: kExtraLargeSpacing),
+          Align(
+            child: Image.asset(
+              width: 100.0,
+              height: 100.0,
+              'assets/images/event.png',
+            ),
           ),
-          Text(
+          const SizedBox(height: kDefaultSpacing),
+          const Text(
             'Event Not Found',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -25,7 +29,7 @@ class EventListEmpty extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          Text(
+          const Text(
             'Try changing city name, start date or end date to get event data',
             style: TextStyle(
               fontSize: 14.0,

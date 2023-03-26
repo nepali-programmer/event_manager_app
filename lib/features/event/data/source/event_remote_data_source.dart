@@ -33,10 +33,10 @@ class EventRemoteDataSourceImpl implements EventRemoteDataSource {
   }) async {
     Dio dio = Dio();
     Map<String, dynamic> queryParameters = {
-      'city': city,
+      'address': city,
     };
     if (startDate != null) {
-      queryParameters['start_data'] = startDate;
+      queryParameters['start_date'] = startDate;
     }
     if (endDate != null) {
       queryParameters['end_date'] = endDate;

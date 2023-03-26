@@ -77,7 +77,14 @@ class _EventContentState extends State<EventContent> {
     return ListView(
       padding: const EdgeInsets.all(kMediumLargeSpacing),
       children: [
-        const SizedBox(height: kLargeSpacing),
+        Align(
+          child: Image.asset(
+            width: 100.0,
+            height: 100.0,
+            'assets/images/event.png',
+          ),
+        ),
+        const SizedBox(height: kDefaultSpacing),
         Material(
           elevation: 2.0,
           borderRadius: BorderRadius.circular(kSmallBorderRadius),
@@ -95,8 +102,10 @@ class _EventContentState extends State<EventContent> {
                       controller: city,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'City name is required';
+                        if (startDate == null && endDate == null) {
+                          if (value == null || value.isEmpty) {
+                            return 'City name is required';
+                          }
                         }
                         return null;
                       },

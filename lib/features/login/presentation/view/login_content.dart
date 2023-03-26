@@ -49,13 +49,21 @@ class _LoginContentState extends State<LoginContent> {
     return ListView(
       padding: const EdgeInsets.all(kDefaultSpacing),
       children: [
-        const SizedBox(height: kLargeSpacing),
+        const SizedBox(height: kDefaultSpacing),
+        Align(
+          child: Image.asset(
+            width: 100.0,
+            height: 100.0,
+            'assets/images/event.png',
+          ),
+        ),
+        const SizedBox(height: kDefaultSpacing),
         Text(
           'Login',
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const Text('Log in to use Event Manager'),
-        const SizedBox(height: kLargeSpacing),
+        const SizedBox(height: kDefaultSpacing),
         Form(
           key: formKey,
           child: Material(
