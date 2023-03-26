@@ -1,16 +1,10 @@
-# event_manager_app
+## Event App
 
-A new Flutter project.
+Event App uses Api built using Laravel. You must run that project first.
 
-## Getting Started
+### Running project
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1.  Clone the project
+2.  This step can be skipped if you are running both the apps on the same device and running this application using an Emulator. Change the ip address to the address where Laravel Project is hosted. You must change \_baseAddress from `event_manager_app/lib/core/api/api_url.dart` file.
+3.  Run `pub get`
+4.  Run the app
