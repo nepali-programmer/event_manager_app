@@ -44,4 +44,8 @@ class LoginRepositoryImpl implements LoginRepository {
       return left(AppError(message: message));
     }
   }
+
+  @override
+  Future<Either<AppError, String>> logout() async =>
+      loginLocalDataSource.logout();
 }

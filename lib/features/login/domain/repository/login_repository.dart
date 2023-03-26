@@ -5,4 +5,5 @@ import '../entity/user.dart';
 
 abstract class LoginRepository {
   Future<Either<AppError, User>> login(String? email, String? password);
+  Future<Either<AppError, String>> logout();
 }

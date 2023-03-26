@@ -2,7 +2,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:event_manager_app/core/error/app_error.dart';
-import 'package:event_manager_app/features/login/domain/usecase/login.dart';
+import 'package:event_manager_app/features/login/domain/usecase/login_usecase.dart';
+import 'package:event_manager_app/features/login/domain/usecase/logout_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,9 +14,11 @@ part 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  Login login;
+  LoginUsecase loginUsecase;
+  LogoutUsecase logoutUsecase;
   LoginCubit(
-    this.login,
+    this.loginUsecase,
+    this.logoutUsecase,
   ) : super(const LoginState.initial());
 
   auth({
@@ -23,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
     String? password,
   }) async {
     emit(const LoginState.loading());
-    Either<AppError, User> result = await login(
+    Either<AppError, User> result = await loginUsecase(
       email: email,
       password: password,
     );
@@ -31,5 +34,10 @@ class LoginCubit extends Cubit<LoginState> {
       (l) => emit(LoginState.failure(l.message)),
       (r) => emit(LoginState.success(r)),
     );
+  }
+
+  logout() async {
+    await logoutUsecase();
+    emit(const LoginState.initial());
   }
 }

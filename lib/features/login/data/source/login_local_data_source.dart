@@ -11,6 +11,7 @@ import '../model/user_model.dart';
 
 abstract class LoginLocalDataSource {
   Future<Either<AppError, UserModel>> getUserDetail();
+  Future<Either<AppError, String>> logout();
 }
 
 @LazySingleton(as: LoginLocalDataSource)
@@ -26,6 +27,16 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
       return Right(UserModel.fromJson(jsonDecode(userModelString)));
     } else {
       throw Left(AppError());
+    }
+  }
+
+  @override
+  Future<Either<AppError, String>> logout() async {
+    try {
+      await preferences.remove(kUserModelKey);
+      return right('Successfully logged out');
+    } catch (e) {
+      return left(AppError());
     }
   }
 }

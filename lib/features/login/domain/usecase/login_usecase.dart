@@ -7,9 +7,9 @@ import 'package:injectable/injectable.dart';
 import '../entity/user.dart';
 
 @LazySingleton()
-class Login {
+class LoginUsecase {
   final LoginRepository loginRepository;
-  Login({
+  LoginUsecase({
     required this.loginRepository,
   });
   Future<Either<AppError, User>> call({String? email, String? password}) =>

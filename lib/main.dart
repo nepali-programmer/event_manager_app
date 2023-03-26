@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/di/injection.dart';
 import 'core/theme/app_theme.dart';
-import 'features/event/presentation/view/event_view.dart';
+import 'features/login/presentation/cubit/login/login_cubit.dart';
 import 'features/login/presentation/view/login_view.dart';
 
 void main() async {
@@ -19,7 +20,10 @@ class MyApp extends StatelessWidget {
       title: 'Weather App',
       debugShowCheckedModeBanner: false,
       theme: getIt<AppThemeData>().lightTheme(),
-      home: const LoginView(main: EventView()),
+      home: BlocProvider(
+        create: (context) => getIt<LoginCubit>(),
+        child: const LoginView(),
+      ),
     );
   }
 }

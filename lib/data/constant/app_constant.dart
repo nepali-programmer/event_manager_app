@@ -2,7 +2,9 @@ import 'package:flutter/animation.dart';
 
 const double kExtraSmallSpacing = 5.0;
 const double kSmallSpacing = 10.0;
+const double kMediumSmallSpacing = 15.0;
 const double kDefaultSpacing = 20.0;
+const double kMediumLargeSpacing = 30.0;
 const double kLargeSpacing = 40.0;
 const double kExtraLargeSpacing = 60.0;
 

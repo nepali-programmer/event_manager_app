@@ -5,7 +5,3 @@ class AppError implements Exception {
     this.message = '',
   });
 }
-
-class AuthenticationError extends AppError {
-  AuthenticationError({required super.message});
-}
