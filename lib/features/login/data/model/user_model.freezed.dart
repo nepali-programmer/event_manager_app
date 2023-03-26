@@ -24,6 +24,7 @@ mixin _$UserModel {
   String get email => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserModelCopyWith<UserModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -114,7 +115,7 @@ class __$$_UserModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class _$_UserModel implements _UserModel {
   const _$_UserModel(
       {required this.name, required this.email, required this.token});
@@ -153,6 +154,13 @@ class _$_UserModel implements _UserModel {
   @pragma('vm:prefer-inline')
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>
       __$$_UserModelCopyWithImpl<_$_UserModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserModelToJson(
+      this,
+    );
+  }
 }
 
 abstract class _UserModel implements UserModel {

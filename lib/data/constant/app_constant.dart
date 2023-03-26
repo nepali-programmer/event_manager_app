@@ -16,3 +16,7 @@ const double kLargeIcon = 64.0;
 const Duration kDefaultDuration = Duration(milliseconds: 350);
 const Duration kAdTimerDuration = Duration(minutes: 4);
 const Curve kDefaultCurve = Curves.easeIn;
+
+//////////////////
+
+const String kUserModelKey = 'user-model-key';

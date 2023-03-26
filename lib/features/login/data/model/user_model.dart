@@ -5,7 +5,7 @@ import '../../domain/entity/user.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
-@Freezed(toJson: false)
+@freezed
 class UserModel extends User with _$UserModel {
   const factory UserModel({
     required String name,
